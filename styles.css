@@ -1,0 +1,40 @@
+.top-section  {
+  background-color: #E5F3F2
+}
+.header  {
+  display: inline;
+  font-family: Roboto Slab;
+  font-weight: 700;
+  font-size: 100px;
+  margin: 50px, 0px, 50px, 0px;
+}
+.head-idea  {
+  color: #00A79D;
+}
+.head-box  {
+  color: #6D6E71;
+}
+.input  {
+  display: block;
+  font-size: 20px;
+  height: 40px;
+  margin: 15px;
+  width: 80vw;
+}
+.save-button  {  
+  background-color: #00A79D;
+  color: #FFFFFF;
+  font-size: 20px;
+  height: 40px;
+  margin: 15px;
+  width: 80vw;
+}
+.save-button:hover  {
+  background-color: #045E55;
+  color:#FFFFFF;
+}
+form  {
+  text-align: center;
+
+}
+
