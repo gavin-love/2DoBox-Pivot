@@ -1,6 +1,7 @@
 .top-section  {
   background-color: #E5F3F2
 }
+/*page title*/
 .header  {
   display: inline;
   font-family: Roboto Slab;
@@ -8,18 +9,21 @@
   font-size: 100px;
   margin: 50px, 0px, 50px, 0px;
 }
-.head-idea  {
+.head-idea  { 
   color: #00A79D;
 }
 .head-box  {
   color: #6D6E71;
 }
+/*top two input fields*/
 .input  {
+  border: 2px solid #939598;
   display: block;
   font-size: 20px;
   height: 40px;
   margin: 15px;
-  width: 80vw;
+  text-indent: 25px;
+  width: 70vw;
 }
 .save-button  {  
   background-color: #00A79D;
@@ -27,14 +31,72 @@
   font-size: 20px;
   height: 40px;
   margin: 15px;
-  width: 80vw;
+  width: 70vw;
 }
 .save-button:hover  {
   background-color: #045E55;
   color:#FFFFFF;
 }
-form  {
-  text-align: center;
-
+/*cards*/
+h2  {
+  color: #6D6E71;
+  display: inline;
+  font-family: Roboto Slab;
+  font-weight: 700;
+  font-size: 40px;
 }
+.card-body  {
+  color: #939598;
+  font-size: 20px;
+}
+.card  {
+  border-bottom: 1px solid #D1D3D4;
+  width: 70%;
+}
+h3  {
+  color: #6D6E71; 
+  display: inline;
+  font-weight: 800;
+}
+.delete-button  {
+  background-image: url(icons/delete.svg);
+  background-size: 40px;
+  background-repeat: none;
+  border: 0px;
+  height: 40px;
+  width: 40px;
+  display: inline;
+  position: relative;
+}
+.downvote  {
+  background-image: url(icons/downvote.svg);
+  background-size: 40px;
+  background-repeat: none;
+  border: 0px;
+  height: 40px;
+  width: 40px;
+}
+.upvote  {
+  background-image: url(icons/upvote.svg);
+  background-size: 40px;
+  background-repeat: none;
+  border: 0px;
+  height: 40px;
+  width: 40px;
+}
+.delete-button:hover  {
+  background-image: url(icons/delete-hover.svg);
+}
+.upvote:hover  {
+  background-image: url(icons/upvote-hover.svg);
+}
+.downvote:hover  {
+  background-image: url(icons/downvote-hover.svg);
+}
+
+
+
+
+
+
 
