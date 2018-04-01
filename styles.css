@@ -1,102 +1,133 @@
 .top-section  {
   background-color: #E5F3F2
 }
+
 /*page title*/
-.header  {
-  display: inline;
-  font-family: Roboto Slab;
+.ideabox  {
+  text-align: center;
+  padding: 3% 0 1% 0;
+  font-family: 'Roboto Slab', serif;
   font-weight: 700;
-  font-size: 100px;
-  margin: 50px, 0px, 50px, 0px;
+  font-size: 6vw;
 }
+
 .head-idea  { 
+  display: inline;
   color: #00A79D;
 }
+
 .head-box  {
   color: #6D6E71;
+  display: inline;
 }
+
 /*top two input fields*/
-.input  {
-  border: 2px solid #939598;
-  display: block;
-  font-size: 20px;
-  height: 40px;
-  margin: 15px;
-  text-indent: 25px;
-  width: 70vw;
+.top-form {
+  text-align: center;
 }
+
+.input  {
+  margin: 2% auto;  
+  border: 2px solid #c6c6c6;
+  display: block;
+  font-size: 2vw;
+  height: 3vw;
+  text-indent: 1%;
+  width: 60vw;
+}
+
+.input::placeholder {
+  color: #c6c6c6;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.input[type=text]:focus {
+    background-color: #c4f2ee;
+    border: 2px solid #00A79D;
+    transition: 0.6s;
+    outline: none;
+}
+
 .save-button  {  
+  margin: 2% auto 3% auto;
   background-color: #00A79D;
   color: #FFFFFF;
-  font-size: 20px;
-  height: 40px;
-  margin: 15px;
-  width: 70vw;
+  font-size: 2vw;
+  height: 4vw;
+  width: 60vw;
 }
+
 .save-button:hover  {
   background-color: #045E55;
   color:#FFFFFF;
 }
+
 /*cards*/
-h2  {
+.title-display  {
   color: #6D6E71;
   display: inline;
-  font-family: Roboto Slab;
+  font-family: 'Roboto Slab', serif;
   font-weight: 700;
-  font-size: 40px;
+  font-size: 2.3vw;
 }
+
 .card-body  {
+  margin: 3% 0;
   color: #939598;
-  font-size: 20px;
+  font-size: 1.5vw;
 }
+
 .card  {
+  margin: 3% auto;
+  padding-bottom: 2%;
   border-bottom: 1px solid #D1D3D4;
-  width: 70%;
+  width: 60%;
 }
-h3  {
+
+.quality {
   color: #6D6E71; 
   display: inline;
   font-weight: 800;
+  font-size: 1.3vw;
 }
+
 .delete-button  {
+  position: absolute;
+  right: 20%;
   background-image: url(icons/delete.svg);
-  background-size: 40px;
-  background-repeat: none;
-  border: 0px;
-  height: 40px;
-  width: 40px;
-  display: inline;
-  position: relative;
+  background-size: 2.7vw;
+  border: 0;
+  height: 2.7vw;
+  width: 2.7vw;
 }
+
 .downvote  {
   background-image: url(icons/downvote.svg);
-  background-size: 40px;
-  background-repeat: none;
-  border: 0px;
-  height: 40px;
-  width: 40px;
+  background-size: 2.7vw;
+  border: 0;
+  height: 2.7vw;
+  width: 2.7vw;
+  margin: 0 3%;
+  padding-bottom: 2%;
 }
+
 .upvote  {
   background-image: url(icons/upvote.svg);
-  background-size: 40px;
-  background-repeat: none;
-  border: 0px;
-  height: 40px;
-  width: 40px;
+  background-size: 2.7vw;
+  border: 0;
+  height: 2.7vw;
+  width: 2.7vw;
+  padding-bottom: 2%;
 }
+
 .delete-button:hover  {
   background-image: url(icons/delete-hover.svg);
 }
+
 .upvote:hover  {
   background-image: url(icons/upvote-hover.svg);
 }
+
 .downvote:hover  {
   background-image: url(icons/downvote-hover.svg);
 }
-
-
-
-
-
-
-
