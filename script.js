@@ -8,10 +8,47 @@ var quality = 0;
 $ideaSave.on('click', userInput);
 // $('').on('click', deleteCard);
 
+recreateCards()
+
+
 function objectToString(newestIdea) {
   var newObjectString = JSON.stringify(newestIdea);
   console.log(newObjectString);
   localStorage.setItem(newestIdea.id, newObjectString);
+}
+
+function cardCreater(idea) {
+  $anchor.prepend(`<article class="card">
+                      <h2 class=".title-display">${idea.title}</h2>
+                      <input type="button" name="delete button" class="delete-button">
+                      <p class="card-body">${idea.body}</p>
+                      <input type="button" class="arrow-button upvote">
+                      <input type="button" class="arrow-button downvote">
+                      <h3 class="quality">quality: <span class="quality-text">swill<span>
+                      </h3>
+                    </article>`);
+};
+
+function recreateCards() {
+ // get all keys
+ // this will return all objects out of localstorage
+ // grab the object 
+ for ( var i = 0; i < localStorage.length; i++ ) {
+   var returnCard = localStorage.getItem( localStorage.key( i ) )
+   var parsedCard = JSON.parse(returnCard) 
+   // need to get title and body
+   $anchor.prepend(`<article class="card">
+                      <h2 class=".title-display">${idea.title}</h2>
+                      <input type="button" name="delete button" class="delete-button">
+                      <p class="card-body">${idea.body}</p>
+                      <input type="button" class="arrow-button upvote">
+                      <input type="button" class="arrow-button downvote">
+                      <h3 class="quality">quality: <span class="quality-text">swill<span>
+                      </h3>
+                    </article>`);
+}
+ // for every key, we need to create a card
+ // 
 }
 
 
@@ -25,17 +62,7 @@ function userInput() {
   objectToString(newestIdea);
 };
 
-function cardCreater(idea) {
-  $anchor.prepend(`<article class="card">
-                      <h2 class=".title-display">${idea.title}</h2>
-                      <input type="button" name="delete button" class="delete-button">
-                      <p class="card-body">${idea.body}</p>
-                      <input type="button" class="arrow-button upvote">
-                      <input type="button" class="arrow-button downvote">
-                      <h3 class="quality">quality: <span class="quality-text">swill<span>
-                      </h3>
-                    </article>`);
-};
+
 
 // Create object
 function CardInfo (title, body) {
