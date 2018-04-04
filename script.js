@@ -5,12 +5,22 @@ $ideaSearch = $('.search');
 var quality = 0;
 
 // Creat Cards and add classes
-$ideaSave.on('click', function cardCreater () {
-  $("ul").prepend(`<article class="card"><h2 class="title-display"></h2><input type="button" name="delete button" class="delete-button"><p class="card-body"></p><input type="button" class="arrow-button upvote"><input type="button" class="arrow-button downvote"><h3 class="quality">quality: <span class="quality-text">swill<span></h3></article>`);
-  userInput();
-});
+$ideaSave.on('click', userInput);
+
+function cardCreater(idea) {
+  $("ul").prepend(`<article class="card">
+                      <h2 class=".title-display">${idea.title}</h2>
+                      <input type="button" name="delete button" class="delete-button">
+                      <p class="card-body">${idea.body}</p>
+                      <input type="button" class="arrow-button upvote">
+                      <input type="button" class="arrow-button downvote">
+                      <h3 class="quality">quality: <span class="quality-text">swill<span>
+                      </h3>
+                    </article>`);
+};
+
 // Create object
-function CardInfo (title, body, quality) {
+function CardInfo (title, body) {
   this.title = title;
   this.body = body;
   this.quality = 'swill';
@@ -20,9 +30,11 @@ function CardInfo (title, body, quality) {
 // Save button functionality
 function userInput() {
   var ideaTitle = $ideaTitle.val();
-  $('.title-display').text(ideaTitle);
   var ideaBody = $ideaBody.val();
-  $('.card-body').text(ideaBody);
+  var newestIdea = new CardInfo(ideaTitle, ideaBody);
+  cardCreater(newestIdea);
+  console.log(newestIdea);
+  console.log(ideaTitle);
 };
 
 // Delete button functionality
