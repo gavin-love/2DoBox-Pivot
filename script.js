@@ -4,28 +4,26 @@ $ideaSave = $('.save-button');
 $ideaSearch = $('.search');
 $anchor = $('.card-section');
 var quality = 0;
+recreateCards();
 
 $ideaSave.on('click', userInput);
-// $('').on('click', deleteCard);
 
-recreateCards()
+// Save button functionality
+function userInput() {
+  var ideaTitle = $ideaTitle.val();
+  var ideaBody = $ideaBody.val();
+  var newestIdea = new CardInfo(ideaTitle, ideaBody);
+  cardCreater(newestIdea);
+  objectToString(newestIdea);
+};
 
-
-function objectToString(newestIdea) {
-  var newObjectString = JSON.stringify(newestIdea);
-  console.log(newObjectString);
-  localStorage.setItem(newestIdea.id, newObjectString);
-}
-
-
-function deleteCard(id) {
-  
-  $thisArticle = $(`#${id}`);
-  $thisArticle.css('display', 'none');
-  debugger
-
-}
-
+// Create object
+function CardInfo (title, body) {
+  this.title = title;
+  this.body = body;
+  this.quality = 'swill';
+  this.id = Date.now();
+};
 
 function cardCreater(idea) {
   $anchor.prepend(`<article id=${idea.id} class="card">
@@ -39,49 +37,48 @@ function cardCreater(idea) {
                     </article>`);
 };
 
+function objectToString(newestIdea) {
+  var newObjectString = JSON.stringify(newestIdea);
+  localStorage.setItem(newestIdea.id, newObjectString);
+}
+
 function recreateCards() {
- // get all keys
- // this will return all objects out of localstorage
- // grab the object 
- for ( var i = 0; i < localStorage.length; i++ ) {
-   var returnCard = localStorage.getItem( localStorage.key( i ) )
-   var parsedCard = JSON.parse(returnCard) 
-   cardCreater(parsedCard);
-   // need to get title and body
-}
- // for every key, we need to create a card
- 
+  for (var i = 0; i < localStorage.length; i++) {
+    var returnCard = localStorage.getItem(localStorage.key(i));
+    var parsedCard = JSON.parse(returnCard);
+    cardCreater(parsedCard);
+  }
 }
 
+function deleteCard(id) {
+  $thisArticle = $(`#${id}`);
+  $thisArticle.css('display', 'none');
+}
 
-// Save button functionality
-function userInput() {
-  var ideaTitle = $ideaTitle.val();
-  var ideaBody = $ideaBody.val();
-  var newestIdea = new CardInfo(ideaTitle, ideaBody);
-  cardCreater(newestIdea);
-  console.log(newestIdea);
-  objectToString(newestIdea);
-};
-
-
-
-// Create object
-function CardInfo (title, body) {
-  this.title = title;
-  this.body = body;
-  this.quality = 'swill';
-  this.id = Date.now();
-};
-
-// // Delete button functionality
-// $anchor.on('click', function () {
-//   console.log('click damn you!');
+// //need to add in to save button ability to clear input fields after save
+// $('.save-button').click(function() {
+//     $('.input').val("");
 // });
 
-// function deleteCard() {
-//   console.log('its connected');
-// };
+// //need to make save disaibled if input fields are empty
+// function toggleButton () {
+//   var disabled;
+//   if (inputTitle.value === "" && inputUrl.value === "") {
+//     enterButton.disabled = true;
+//   } else {
+//     enterButton.disabled = false;
+//   }
+// }
+
+// //need to make display:none cards also deleted from local storage
+// localStorage.removeItem(); takes a key and removes 
+// that key and its associated value from storage.
+
+//need to make design responsive
+//need to get upvote and down vote working
+
+
+
 
 // // Upvote and Downvote functionality
 // $anchor.on('click', function () {
@@ -107,6 +104,3 @@ function CardInfo (title, body) {
 //     $('.quality-text').text('swill');
 //   }
 // };
-
-
-
