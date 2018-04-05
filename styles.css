@@ -131,3 +131,73 @@
 .downvote:hover  {
   background-image: url(icons/downvote-hover.svg);
 }
+
+
+
+@media only screen and (max-width: 1024px) {
+  .ideabox  {
+    font-size: 10vw;
+    padding: 3vw;
+  }
+  .top-section  {
+    height: 57vw;
+  }
+  .input  {
+    width: 75vw;
+    height: 5vw;
+    padding: 1vw;
+  }
+  .input-body  {
+    height: 7em;
+  }
+  .save-button  {
+    height: 5vw;
+    width: 78vw;
+  }
+  /*card styles*/
+  .card  {
+    margin-top: 10vw;
+    width: 80vw;
+  }
+  .title-display  {
+    font-size: 4vw;
+  }
+  .card-body  {
+    font-size: 3vw;
+  }
+  .delete-button,
+  .arrow-button  {
+    background-color: white;
+    background-size: 4vw;
+    height: 4vw;
+    width: 4vw;
+  }
+  .quality,
+  .quality-text  {
+    font-size: 2.5vw;
+  }
+}
+
+@media only screen and (max-width: 760px) and (min-width: 320px) {
+  .top-section  {
+    height: 55vh;
+  }
+  .ideabox  {
+    font-size: 12vw;
+    height: 15vw;
+    padding-top: 12vw;
+  }
+  .input  {
+    font-size: 5vw;
+    margin: 5vw;
+    width: 85vw;
+  }
+  .input-body  {
+    height: 4em;
+  }
+  .save-button  {
+    font-size: 5vw;
+    width: 90vw;
+    height: 10vw;
+  }
+}
