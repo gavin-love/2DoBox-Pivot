@@ -6,18 +6,39 @@ $anchor = $('.card-section');
 var quality = 0;
 recreateCards();
 
-$ideaSave.on('click', userInput);
+$ideaSave.on('click', validateInput);
+$ideaTitle.on('keyup', toggleButton);
+$ideaBody.on('keyup', toggleButton);
 
-// Save button functionality
+function toggleButton () {
+  if ($ideaTitle.val() === "" && $ideaBody.val() === "") {
+    $ideaSave.prop("disabled", true);
+  } else {
+    $ideaSave.prop("disabled", false);
+  }
+}
+
+function validateInput () {
+  if ($ideaTitle.val() === "" || $ideaBody.val() === "") {
+    alert("Please Enter Fillout The Title And Body Fields");
+  } else {
+    userInput();
+  }
+}
+
 function userInput() {
   var ideaTitle = $ideaTitle.val();
   var ideaBody = $ideaBody.val();
   var newestIdea = new CardInfo(ideaTitle, ideaBody);
   cardCreater(newestIdea);
   objectToString(newestIdea);
+  clearInputFields();
 };
 
-// Create object
+function clearInputFields() {
+    $('.input').val('');
+};
+
 function CardInfo (title, body) {
   this.title = title;
   this.body = body;
@@ -53,26 +74,8 @@ function recreateCards() {
 function deleteCard(id) {
   $thisArticle = $(`#${id}`);
   $thisArticle.css('display', 'none');
+  localStorage.removeItem(id);
 }
-
-// //need to add in to save button ability to clear input fields after save
-// $('.save-button').click(function() {
-//     $('.input').val("");
-// });
-
-// //need to make save disaibled if input fields are empty
-// function toggleButton () {
-//   var disabled;
-//   if (inputTitle.value === "" && inputUrl.value === "") {
-//     enterButton.disabled = true;
-//   } else {
-//     enterButton.disabled = false;
-//   }
-// }
-
-// //need to make display:none cards also deleted from local storage
-// localStorage.removeItem(); takes a key and removes 
-// that key and its associated value from storage.
 
 //need to make design responsive
 //need to get upvote and down vote working
