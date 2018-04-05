@@ -77,33 +77,24 @@ function deleteCard(id) {
   localStorage.removeItem(id);
 }
 
-//need to make design responsive
-//need to get upvote and down vote working
+$anchor.on('click', function () {
+  console.log('great idea');
+  quality += 1;
+  checkQuality ();
+});
 
+$anchor.on('click', function () {
+  console.log('terrible idea');
+  quality -= 1;
+  checkQuality ();
+});
 
-
-
-// // Upvote and Downvote functionality
-// $anchor.on('click', function () {
-//   console.log('great idea');
-//   quality += 1;
-//   console.log(quality);
-//   checkQuality ();
-// });
-
-// $anchor.on('click', function () {
-//   console.log('terrible idea');
-//   quality -= 1;
-//   console.log(quality);
-//   checkQuality ();
-// });
-
-// function checkQuality() {
-//   if (quality === 1) {
-//     $('.quality-text').text('plausible');
-//   } else if (quality === 2) {
-//     $('.quality-text').text('genius');
-//   } else {
-//     $('.quality-text').text('swill');
-//   }
-// };
+function checkQuality() {
+  if (quality === 1) {
+    $('.quality-text').text('plausible');
+  } else if (quality === 2) {
+    $('.quality-text').text('genius');
+  } else {
+    $('.quality-text').text('swill');
+  }
+};
