@@ -103,7 +103,7 @@ h2  {
   outline: none;
 }
 
-.downvote  {
+.downvote-button  {
   background-image: url(icons/downvote.svg);
   background-size: 2.7vw;
   border: 0;
@@ -114,7 +114,7 @@ h2  {
   outline: none;
 }
 
-.upvote  {
+.upvote-button  {
   background-image: url(icons/upvote.svg);
   background-size: 2.7vw;
   border: 0;
