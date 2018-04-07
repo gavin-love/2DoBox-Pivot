@@ -1,24 +1,24 @@
-.top-section  {
+.form-container  {
   background-color: #E5F3F2
 }
 /*page title*/
-.ideabox  {
+.page-title  {
   text-align: center;
   padding: 3% 0 1% 0;
   font-family: 'Roboto Slab', serif;
   font-weight: 700;
   font-size: 6vw;
 }
-.head-idea  { 
+.title-idea  { 
   display: inline;
   color: #00A79D;
 }
-.head-box  {
+.title-box  {
   color: #6D6E71;
   display: inline;
 }
 /*top two input fields*/
-.top-form {
+.form-one {
   text-align: center;
 }
 .input  {
@@ -53,13 +53,26 @@
   background-color: #045E55;
   color:#FFFFFF;
 }
+
+.form-two {
+  width: 60%;
+  margin: auto;
+}
 /*cards*/
 h2  {
   font-size: 3vw;
   color: #6D6E71;
   font-weight: 700;
 }
-.title-display  {
+
+.card  {
+  margin: 3% auto;
+  padding-bottom: 2%;
+  border-bottom: 1px solid #D1D3D4;
+  width: 60%;
+}
+
+.card-title  {
   color: #6D6E71;
   display: inline;
   font-family: 'Roboto Slab', serif;
@@ -71,18 +84,14 @@ h2  {
   color: #939598;
   font-size: 1.5vw;
 }
-.card  {
-  margin: 3% auto;
-  padding-bottom: 2%;
-  border-bottom: 1px solid #D1D3D4;
-  width: 60%;
-}
+
 .quality {
   color: #6D6E71; 
   display: inline;
   font-weight: 800;
   font-size: 1.3vw;
 }
+
 .delete-button  {
   position: absolute;
   right: 20%;
@@ -93,6 +102,7 @@ h2  {
   width: 2.7vw;
   outline: none;
 }
+
 .downvote  {
   background-image: url(icons/downvote.svg);
   background-size: 2.7vw;
@@ -103,6 +113,7 @@ h2  {
   padding-bottom: 2%;
   outline: none;
 }
+
 .upvote  {
   background-image: url(icons/upvote.svg);
   background-size: 2.7vw;
@@ -112,22 +123,26 @@ h2  {
   padding-bottom: 2%;
   outline: none;
 }
+
 .delete-button:hover  {
   background-image: url(icons/delete-hover.svg);
 }
+
 .upvote:hover  {
   background-image: url(icons/upvote-hover.svg);
 }
+
 .downvote:hover  {
   background-image: url(icons/downvote-hover.svg);
 }
+
 /*tablet*/
 @media only screen and (max-width: 1024px) {
-  .ideabox  {
+  .page-title  {
     font-size: 10vw;
     padding: 3vw;
   }
-  .top-section  {
+  .form-container  {
     height: 57vw;
     position: fixed;
     top: 0px;
@@ -176,10 +191,10 @@ h2  {
 }
 /*phone*/
 @media only screen and (max-width: 760px) and (min-width: 320px) {
-  .top-section  {
+  .form-container  {
     height: 89vw;
   }
-  .ideabox  {
+  .page-title  {
     font-size: 12vw;
     height: 10vw;
     padding-top: 10vw;
