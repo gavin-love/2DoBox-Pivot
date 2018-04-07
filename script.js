@@ -1,8 +1,8 @@
-$ideaTitle = $('.input-title');
-$ideaBody = $('.input-body');
+$ideaTitle = $('.title-input');
+$ideaBody = $('.body-input');
 $ideaSave = $('.save-button');
-$ideaSearch = $('.search');
-$anchor = $('.card-section');
+$ideaSearch = $('.search-input');
+$anchor = $('.card-container');
 var quality = 0;
 recreateCards();
 
@@ -27,9 +27,9 @@ function validateInput () {
 }
 
 function userInput() {
-  var ideaTitle = $ideaTitle.val();
-  var ideaBody = $ideaBody.val();
-  var newestIdea = new CardInfo(ideaTitle, ideaBody);
+  var title = $ideaTitle.val();
+  var body = $ideaBody.val();
+  var newestIdea = new CardInfo(title, body);
   cardCreater(newestIdea);
   objectToString(newestIdea);
   clearInputFields();
@@ -47,15 +47,16 @@ function CardInfo (title, body) {
 };
 
 function cardCreater(idea) {
-  $anchor.prepend(`<article id=${idea.id} class="card">
-                      <h2 class=".title-display">${idea.title}</h2>
-                      <input type="button" name="delete button" class="delete-button" onClick="deleteCard(${idea.id})">
-                      <p class="card-body">${idea.body}</p>
-                      <input type="button" class="arrow-button upvote">
-                      <input type="button" class="arrow-button downvote">
-                      <h3 class="quality">quality: <span class="quality-text">swill<span>
-                      </h3>
-                    </article>`);
+  $anchor.prepend(`
+    <article id=${idea.id} class="card">
+      <h2 class=".card-title">${idea.title}</h2>
+      <input type="button" name="delete button" class="delete-button" onClick="deleteCard(${idea.id})">
+      <p class="card-body">${idea.body}</p>
+      <input type="button" class="upvote">
+      <input type="button" class="downvote">
+      <h3 class="quality">quality: <span class="quality-text">swill<span>
+      </h3>
+    </article>`);
 };
 
 function objectToString(newestIdea) {

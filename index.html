@@ -2,34 +2,31 @@
 <html>
 <head>
   <title>ideabox</title>
-  <link rel="stylesheet" type="text/css" href="reset.css">
-  <link rel="stylesheet" type="text/css" href="styles.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="jQuery.js"></script>
+  <link rel="stylesheet" type="text/css" href="reset.css">
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-  <section class="top-section">
-    <header class="ideabox">
-      <h1 class="head-idea">idea</h1>
-      <h1 class="head-box">box</h1>
+  <section class="form-one-container">
+    <header class="page-title">
+      <h1 class="title-idea">idea</h1>
+      <h1 class="title-box">box</h1>
     </header>
-    <form class="top-form">
-      <input class="input-title input" aria-label="field to enter in the title of your idea." type="text" name="title" placeholder="Title" maxlength="80">
-      <input class="input-body input" aria-label="field to enter in the body of your idea." type="text" name="body" placeholder="Body">
+    <form class="form-one">
+      <input class="title-input input" aria-label="field to enter in the title of your idea." type="text" name="title" placeholder="Title" maxlength="80">
+      <input class="body-input input" aria-label="field to enter in the body of your idea." type="text" name="body" placeholder="Body">
       <button class="save-button" type="button" name="save" disabled>save</button>
     </form>
   </section>
-  <section>
-    <form class="bottom-form">
-      <input class="search input" aria-label="field to enter your search criteria. This will search your saved ideas for key words." type="text" name="search" placeholder="Search">
+    <form class="form-two">
+      <input class="search-input input" aria-label="field to enter your search criteria. This will search your saved ideas for key words." type="text" name="search" placeholder="Search">
     </form>
-    <section class="card-section">
-    </section>
-  </section>
-</body>
+  <section class="card-container"></section>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="jQuery.js"></script>
   <script type="text/javascript" src="script.js"></script>
+</body>
 </html>
 
 
