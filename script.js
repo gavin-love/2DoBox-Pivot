@@ -2,13 +2,43 @@ $ideaTitle = $('.title-input');
 $ideaBody = $('.body-input');
 $ideaSave = $('.save-button');
 $ideaSearch = $('.search-input');
-$anchor = $('.card-container');
-var quality = 0;
-recreateCards();
+$cardContainer = $('.card-container');
+
 
 $ideaSave.on('click', validateInput);
 $ideaTitle.on('keyup', toggleButton);
 $ideaBody.on('keyup', toggleButton);
+$cardContainer.on('click', 'article .delete-button', deleteCard);
+$cardContainer.on('click', 'article .upvote-button', upVote);
+$cardContainer.on('click', 'article .downvote-button', downVote);
+
+function CardInfo (object) {
+  this.title = object.title;
+  this.body = object.body;
+  this.quality = object.quality || 'swill';
+  this.id = object.id
+};
+
+function validateInput () {
+  if ($ideaTitle.val() === "" || $ideaBody.val() === "") {
+    alert("Please Enter Fillout The Title And Body Fields");
+  } else {
+    getUserInput();
+  }
+}
+
+function getUserInput() {
+  var title = $ideaTitle.val();
+  var body = $ideaBody.val();
+  var id = Date.now();
+  var quality = 'swill';
+
+  var object = new CardInfo({id: id, title: title, body: body, quality: quality});
+
+  cardPrepend(object);
+  sendToLocalStorage(object);
+  resetForm();
+};
 
 function toggleButton () {
   if ($ideaTitle.val() === "" && $ideaBody.val() === "") {
@@ -18,84 +48,92 @@ function toggleButton () {
   }
 }
 
-function validateInput () {
-  if ($ideaTitle.val() === "" || $ideaBody.val() === "") {
-    alert("Please Enter Fillout The Title And Body Fields");
-  } else {
-    userInput();
-  }
-}
-
-function userInput() {
-  var title = $ideaTitle.val();
-  var body = $ideaBody.val();
-  var newestIdea = new CardInfo(title, body);
-  cardCreater(newestIdea);
-  objectToString(newestIdea);
-  clearInputFields();
-};
-
-function clearInputFields() {
+function resetForm() {
     $('.input').val('');
+    $ideaTitle.focus();
+    toggleButton();
 };
 
-function CardInfo (title, body) {
-  this.title = title;
-  this.body = body;
-  this.quality = 'swill';
-  this.id = Date.now();
-};
-
-function cardCreater(idea) {
-  $anchor.prepend(`
-    <article id=${idea.id} class="card">
-      <h2 class=".card-title">${idea.title}</h2>
-      <input type="button" name="delete button" class="delete-button" onClick="deleteCard(${idea.id})">
-      <p class="card-body">${idea.body}</p>
-      <input type="button" class="upvote">
-      <input type="button" class="downvote">
-      <h3 class="quality">quality: <span class="quality-text">swill<span>
+function cardPrepend(object) {
+  $cardContainer.prepend(`
+    <article id=${object.id} class="card">
+      <h2 class=".card-title">${object.title}</h2>
+      <input type="button" name="delete button" class="delete-button">
+      <p class="card-body">${object.body}</p>
+      <input type="button" class="upvote-button">
+      <input type="button" class="downvote-button">
+      <h3 class="quality">quality:
+        <span class="quality-text">${object.quality}</span>
       </h3>
     </article>`);
 };
 
-function objectToString(newestIdea) {
-  var newObjectString = JSON.stringify(newestIdea);
-  localStorage.setItem(newestIdea.id, newObjectString);
+function sendToLocalStorage(object) {
+  var string = JSON.stringify(object);
+  localStorage.setItem(object.id, string);
 }
 
-function recreateCards() {
-  for (var i = 0; i < localStorage.length; i++) {
-    var returnCard = localStorage.getItem(localStorage.key(i));
-    var parsedCard = JSON.parse(returnCard);
-    cardCreater(parsedCard);
-  }
-}
+function pullFromLocalStorage(that) {
+  var id = $(that).closest('article').attr('id');
+ 
+  string = localStorage.getItem(id);
+  object = JSON.parse(string);
+};
+
+function upVote() {
+  pullFromLocalStorage(this);
+
+  var quality = $(this).siblings($('h3')).children($('span'));
+  var x = quality.text();
+
+  if (x.includes('swill')) {
+      quality.text('plausible');
+      quality = $(this).siblings($('h3')).children($('span')).text('plausible')
+      object.quality = 'plausible';
+  } else if (x.includes('plausible')) {
+      quality.text('Genius');
+      object.quality = 'Genius';
+  };
+
+  sendToLocalStorage(object);
+};
+
+function downVote() {
+  pullFromLocalStorage(this);
+
+  var quality = $(this).siblings($('h3')).children($('span'));
+  var x = quality.text();
+
+  if (x.includes('Genius')) {
+      quality.text('plausible');
+      quality = $(this).siblings($('h3')).children($('span')).text('plausible')
+      object.quality = 'plausible';
+  } else if (x.includes('plausible')) {
+      quality.text('swill');
+      object.quality = 'swill';
+  };
+
+  sendToLocalStorage(object);
+};
 
 function deleteCard(id) {
-  $thisArticle = $(`#${id}`);
-  $thisArticle.css('display', 'none');
-  localStorage.removeItem(id);
+  $(this).closest('article').remove()
+
+  deleteCardStorage(this);
 }
 
-$anchor.on('click', function () {
-  console.log('great idea');
-  quality += 1;
-  checkQuality ();
-});
-
-$anchor.on('click', function () {
-  console.log('terrible idea');
-  quality -= 1;
-  checkQuality ();
-});
-
-function checkQuality() {
-  if (quality === 1) {
-    $('.quality-text').text('plausible');
-  } else if (quality === 2) {
-    $('.quality-text').text('genius');
-  } else {
-    $('.quality-text').text('swill');
-  }
+function deleteCardStorage(that) {
+  var id = $(that).closest('article').attr('id');
+ 
+  localStorage.removeItem(id);   
 };
+
+function onPageLoad() {
+  for (var i = 0; i < localStorage.length; i++) {
+    var string = localStorage.getItem(localStorage.key(i));
+    var object = JSON.parse(string);
+    cardPrepend(object);
+  };
+};
+
+onPageLoad();
