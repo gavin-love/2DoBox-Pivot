@@ -11,6 +11,7 @@ $ideaBody.on('keyup', toggleButton);
 $cardContainer.on('click', 'article .delete-button', deleteCard);
 $cardContainer.on('click', 'article .upvote-button', upVote);
 $cardContainer.on('click', 'article .downvote-button', downVote);
+$ideaSearch.on('keydown', searchLocalStorage);
 
 function CardInfo (object) {
   this.title = object.title;
@@ -86,15 +87,7 @@ function upVote() {
   var quality = $(this).siblings($('h3')).children($('span'));
   var x = quality.text();
 
-  if (x.includes('swill')) {
-      quality.text('plausible');
-      quality = $(this).siblings($('h3')).children($('span')).text('plausible')
-      object.quality = 'plausible';
-  } else if (x.includes('plausible')) {
-      quality.text('Genius');
-      object.quality = 'Genius';
-  };
-
+  qualityCheckUp(quality,x);
   sendToLocalStorage(object);
 };
 
@@ -104,6 +97,22 @@ function downVote() {
   var quality = $(this).siblings($('h3')).children($('span'));
   var x = quality.text();
 
+  qualityCheckDown(quality,x);
+  sendToLocalStorage(object);
+};
+
+function qualityCheckUp(quality,x) {
+  if (x.includes('swill')) {
+      quality.text('plausible');
+      quality = $(this).siblings($('h3')).children($('span')).text('plausible')
+      object.quality = 'plausible';
+  } else if (x.includes('plausible')) {
+      quality.text('Genius');
+      object.quality = 'Genius';
+  };
+};
+
+function qualityCheckDown(quality,x) {
   if (x.includes('Genius')) {
       quality.text('plausible');
       quality = $(this).siblings($('h3')).children($('span')).text('plausible')
@@ -112,8 +121,21 @@ function downVote() {
       quality.text('swill');
       object.quality = 'swill';
   };
+};
 
-  sendToLocalStorage(object);
+function  searchLocalStorage() { 
+  $cardContainer.html('');
+
+  for (var i = 0; i < localStorage.length; i++) {
+    var string = localStorage.getItem(localStorage.key(i));
+    var object = JSON.parse(string);
+    var includesTitle = object.title.includes($ideaSearch.val());
+    var includesBody = object.body.includes($ideaSearch.val())
+
+    if (includesTitle || includesBody) {
+      cardPrepend(object);
+    }; 
+  };
 };
 
 function deleteCard(id) {
