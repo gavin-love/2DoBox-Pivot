@@ -92,6 +92,11 @@ h2  {
   font-size: 1.3vw;
 }
 
+.completed {
+  opacity: .3;
+  color: red;
+}
+
 .delete-button  {
   position: absolute;
   right: 20%;
