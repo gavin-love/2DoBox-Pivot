@@ -11,6 +11,9 @@ $ideaBody.on('keyup', toggleButton);
 $cardContainer.on('click', 'article .delete-button', deleteCard);
 $cardContainer.on('click', 'article .upvote-button', upVote);
 $cardContainer.on('click', 'article .downvote-button', downVote);
+$cardContainer.on('blur', 'article .card-title', editTitle);
+$cardContainer.on('blur', 'article .card-body', editBody);
+$cardContainer.on('click', 'article .mark-complete', markAsComplete);
 $ideaSearch.on('keyup', trueOrFalse);
 
 function CardInfo (object) {
@@ -18,6 +21,7 @@ function CardInfo (object) {
   this.body = object.body;
   this.quality = object.quality || 'swill';
   this.id = object.id
+  this.completed = object.completed || false;
 };
 
 function validateInput () {
@@ -34,7 +38,7 @@ function getUserInput() {
   var id = Date.now();
   var quality = 'swill';
 
-  var object = new CardInfo({id: id, title: title, body: body, quality: quality});
+  var object = new CardInfo({id: id, title: title, body: body, quality: quality, completed: false});
 
   cardPrepend(object);
   sendToLocalStorage(object);
@@ -58,9 +62,12 @@ function resetForm() {
 function cardPrepend(object) {
   $cardContainer.prepend(`
     <article id=${object.id} class="card">
-      <h2 class=".card-title">${object.title}</h2>
+      <h2 contenteditable="true" class="card-title">${object.title}</h2>
+      <label for="checkbox">
+      <input id="checkbox" type="checkbox" name="mark as complete box" class="mark-complete">complete
+      </label>
       <input type="button" name="delete button" class="delete-button">
-      <p class="card-body">${object.body}</p>
+      <p contenteditable="true" class="card-body">${object.body}</p>
       <input type="button" class="upvote-button">
       <input type="button" class="downvote-button">
       <h3 class="quality">quality:
@@ -138,6 +145,20 @@ function  searchLocalStorage() {
   };    
 };
 
+function editTitle() {
+  var title = $(this).text();
+  pullFromLocalStorage(this);
+  object.title = title;
+  sendToLocalStorage(object);
+};
+
+function editBody() {
+  var body = $(this).text();
+  pullFromLocalStorage(this);
+  object.body = body;
+  sendToLocalStorage(object);
+};
+
 function trueOrFalse() {
   $cardContainer.html('');
 
@@ -150,6 +171,21 @@ function trueOrFalse() {
   } else {
     return;
   };
+};
+
+function markAsComplete() {
+  var $toDo = $(this).closest('article');
+  pullFromLocalStorage(this);
+
+  $toDo.toggleClass('completed');
+
+  if (object.completed === false) {
+    object.completed = true;
+  } else {
+    object.completed = false;
+    };
+
+  sendToLocalStorage(object);
 };
 
 function deleteCard(id) {
