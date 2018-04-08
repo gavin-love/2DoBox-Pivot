@@ -11,7 +11,7 @@ $ideaBody.on('keyup', toggleButton);
 $cardContainer.on('click', 'article .delete-button', deleteCard);
 $cardContainer.on('click', 'article .upvote-button', upVote);
 $cardContainer.on('click', 'article .downvote-button', downVote);
-$ideaSearch.on('keydown', searchLocalStorage);
+$ideaSearch.on('keyup', trueOrFalse);
 
 function CardInfo (object) {
   this.title = object.title;
@@ -123,18 +123,32 @@ function qualityCheckDown(quality,x) {
   };
 };
 
-function  searchLocalStorage() { 
+function  searchLocalStorage() {
+
+  
+  for (var i = 0; i < localStorage.length; i++) {
+    var result = localStorage.getItem(localStorage.key(i));
+    var object = JSON.parse(result);
+
+      if (object.title.includes($ideaSearch.val()) || object.body.includes($ideaSearch.val())) {
+        
+        console.log(object);
+        cardPrepend(object);
+      };
+  };    
+};
+
+function trueOrFalse() {
   $cardContainer.html('');
 
-  for (var i = 0; i < localStorage.length; i++) {
-    var string = localStorage.getItem(localStorage.key(i));
-    var object = JSON.parse(string);
-    var includesTitle = object.title.includes($ideaSearch.val());
-    var includesBody = object.body.includes($ideaSearch.val())
+  if ($ideaSearch.val()) {
 
-    if (includesTitle || includesBody) {
-      cardPrepend(object);
-    }; 
+    searchLocalStorage();
+
+  } else if ($ideaSearch.val() === '') {
+        onPageLoad();
+  } else {
+    return;
   };
 };
 
