@@ -55,7 +55,7 @@
 }
 
 .form-two {
-  width: 60%;
+/*  width: 60%;*/
   margin: auto;
 }
 
@@ -231,5 +231,66 @@ h2  {
   }
   .search  {
     margin-top: 95vw;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  
+}
+
+@media only screen and (max-width: 761px) {
+
+}
+
+@media only screen and (max-width: 320) {
+  .page-title  {
+    font-size: 10vw;
+    padding: 3vw;
+  }
+  .form-container  {
+    height: 57vw;
+    position: fixed;
+    top: 0px;
+    width: 100vw;
+    z-index: 1;
+  }
+  .input  {
+    width: 85vw;
+    height: 5vw;
+    padding: 1vw;
+    font-size: 3vw;
+  }
+  .input-body  {
+    height: 4em;
+  }
+  .save-button  {
+    height: 6vw;
+    width: 87vw;
+    outline: none;
+    font-size: 4vw;
+  }
+  .search  {
+    margin-top: 60vw;
+  }
+  .card  {
+    margin-top: 10vw;
+    width: 80vw;
+  }
+  h2  {
+    font-size: 6vw;
+  }
+  .card-body  {
+    font-size: 3vw;
+  }
+  .delete-button,
+  .arrow-button  {
+    background-color: white;
+    background-size: 20px;
+    height: 20px;
+    width: 20px;
+  }
+  .quality,
+  .quality-text  {
+    font-size: 2.5vw;
   }
 }
