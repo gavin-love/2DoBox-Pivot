@@ -70,6 +70,22 @@
   background-color: #045E55;
 }
 
+/*WATCH THIS AREA FOR REDUNDANCY
+*/.toDo-buttons {
+  background-color: #00A79D;
+  padding: 15px 15px;
+  margin: 0 auto;
+  flex-direction: column;
+}
+
+.sort-buttons {
+  display: flex;
+/*  background-color: #00A79D;
+*/  padding: 15px 15px;
+  margin: 0 auto;
+  flex-direction: row;
+}
+
 /*cards*/
 h2  {
   font-size: 3vw;
