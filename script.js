@@ -209,3 +209,24 @@ function onPageLoad() {
 };
 
 onPageLoad();
+
+// function filterCards() {
+//   ideaList.innerHTML = '';
+//   var searchItems = searchInput.value;
+//   if (searchItems) {
+//     keyArray = JSON.parse(localStorage.getItem('keyArray'));
+//     keyArray.forEach(function(key){
+//       var rawIdea = localStorage.getItem(key);
+//       if (rawIdea.includes(searchItems)) {
+//         renderCard(JSON.parse(rawIdea))
+//       }
+//     });
+//   } else {
+//     getStorage();
+//   }
+// }
+
+function filterCards() {
+  $cardContainer.html = '';
+}
+
