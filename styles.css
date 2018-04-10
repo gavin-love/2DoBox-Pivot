@@ -58,6 +58,18 @@
   width: 60%;
   margin: auto;
 }
+
+.filter-button {
+  background-color: #00A79D;
+  border-radius: 0;
+  padding: 15px 15px;
+  margin-left: 20%;
+}
+
+.filter-button:hover {
+  background-color: #045E55;
+}
+
 /*cards*/
 h2  {
   font-size: 3vw;
