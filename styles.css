@@ -208,6 +208,14 @@ h2  {
 }
 /*phone*/
 @media only screen and (max-width: 760px) and (min-width: 320px) {
+
+}
+
+@media only screen and (max-width: 1024px) {
+  
+}
+
+@media only screen and (max-width: 760px) {
   .form-container  {
     height: 89vw;
   }
@@ -228,18 +236,11 @@ h2  {
     font-size: 5vw;
     width: 88vw;
     height: 10vw;
+    margin-right: 15px;
   }
   .search  {
     margin-top: 95vw;
   }
-}
-
-@media only screen and (max-width: 1024px) {
-  
-}
-
-@media only screen and (max-width: 761px) {
-
 }
 
 @media only screen and (max-width: 320) {
