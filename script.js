@@ -5,6 +5,7 @@ $ideaSearch = $('.search-input');
 $cardContainer = $('.card-container');
 $showCompletedBtn = $('.show-completed-button');
 $importanceBtn = $('.toDo-buttons');
+$characterCount = $('.character-count');
 
 var array = [];
 
@@ -21,6 +22,7 @@ $cardContainer.on('click', 'article .mark-complete', markAsComplete);
 $ideaSearch.on('keyup', trueOrFalse);
 $showCompletedBtn.on('click', showCompleted);
 $importanceBtn.on('click', sortByImportance);
+$characterCount.on('keyup', limitCharacterCount);
 
 function CardInfo (object) {
   this.title = object.title;
@@ -271,6 +273,13 @@ function onPageLoad() {
       cardPrepend(object);
     };
   };
+};
+
+function limitCharacterCount() {
+  var length = $(this).val().length;
+  var length = length++;
+  console.log(length);
+  $('#chars').text(length);
 };
 
 onPageLoad();
