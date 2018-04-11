@@ -5,13 +5,19 @@ $ideaSearch = $('.search-input');
 $cardContainer = $('.card-container');
 $showCompletedBtn = $('.show-completed-button');
 $importanceBtn = $('.toDo-buttons');
+$titleCharacterCount = $('.title-character-count');
+$bodyCharacterCount = $('.body-character-count');
 
 var array = [];
+var titleLength = 0;
+var bodyLength= 0;
 
 
 $ideaSave.on('click', validateInput);
 $ideaTitle.on('keyup', toggleButton);
 $ideaBody.on('keyup', toggleButton);
+$ideaTitle.on('keyup', disableButton);
+$ideaBody.on('keyup', disableButton);
 $cardContainer.on('click', 'article .delete-button', deleteCard);
 $cardContainer.on('click', 'article .upvote-button', upVote);
 $cardContainer.on('click', 'article .downvote-button', downVote);
@@ -21,6 +27,8 @@ $cardContainer.on('click', 'article .mark-complete', markAsComplete);
 $ideaSearch.on('keyup', trueOrFalse);
 $showCompletedBtn.on('click', showCompleted);
 $importanceBtn.on('click', sortByImportance);
+$titleCharacterCount.on('keyup', titleCharacterCount);
+$bodyCharacterCount.on('keyup', bodyCharacterCount);
 
 function CardInfo (object) {
   this.title = object.title;
@@ -32,7 +40,7 @@ function CardInfo (object) {
 
 function validateInput () {
   if ($ideaTitle.val() === "" || $ideaBody.val() === "") {
-    alert("Please Enter Fillout The Title And Body Fields");
+    alert("Please Enter Title And Body");
   } else {
     getUserInput();
   }
@@ -54,8 +62,8 @@ function toggleButton () {
     $ideaSave.prop("disabled", true);
   } else {
     $ideaSave.prop("disabled", false);
-  }
-}
+  };
+};
 
 function resetForm() {
     $('.input').val('');
@@ -261,16 +269,44 @@ function deleteCardStorage(that) {
 };
 
 function onPageLoad() {
+  var array = [];
   for (var i = 0; i < localStorage.length; i++) {
     var string = localStorage.getItem(localStorage.key(i));
     var object = JSON.parse(string);
-      // var xyz = Object.keys(object).slice(0, -1);
-      // console.log(xyz);
-    if (object.completed === null) {
-    cardPrepend(object);
+    array.push(object)
+
+    if (array.length < 11 && object.completed === null) {
+      cardPrepend(object);
     };
   };
+};
 
+function titleCharacterCount() {
+  titleLength = parseInt($(this).val().length);
+  titleLength++;
+  $('#title-chars').text(titleLength);
+
+    if (titleLength > 99) {
+      alert('character limit reached')
+    };
+};
+
+function bodyCharacterCount() {
+  bodyLength = parseInt($(this).val().length);
+  bodyLength++;
+  $('#body-chars').text(bodyLength);
+
+    if (bodyLength > 99) {
+      alert('character limit reached')
+    };
+};
+
+function disableButton() {
+  if (titleLength > 99) {
+    $ideaSave.prop("disabled", true);
+  } else {
+    $ideaSave.prop("disabled", false);
+  };
 };
 
 onPageLoad();
