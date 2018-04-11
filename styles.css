@@ -295,8 +295,7 @@ h2  {
 
   .upvote-button,
   .downvote-button {
-    background-size: 20px;
-    margin: 5px 3%;
+    padding: 1px;
   }
 
   .toDo-buttons {
