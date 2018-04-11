@@ -150,8 +150,23 @@ function  searchLocalStorage() {
     var result = localStorage.getItem(localStorage.key(i));
     var object = JSON.parse(result);
       if (object.title.includes($ideaSearch.val()) || object.body.includes($ideaSearch.val())) {
+        cardPrepend(object);
       };
   };    
+};
+
+function trueOrFalse() {
+  $cardContainer.html('');
+
+  if ($ideaSearch.val()) {
+
+    searchLocalStorage();
+
+  } else if ($ideaSearch.val() === '') {
+        onPageLoad();
+  } else {
+    return;
+  };
 };
 
 function editTitle() {
