@@ -21,7 +21,7 @@ function CardInfo (object) {
   this.body = object.body;
   this.quality = object.quality || 'swill';
   this.id = object.id
-  this.completed = object.completed || false;
+  this.completed = object.completed || null;
 };
 
 function validateInput () {
@@ -38,7 +38,7 @@ function getUserInput() {
   var id = Date.now();
   var quality = 'swill';
 
-  var object = new CardInfo({id: id, title: title, body: body, quality: quality, completed: false});
+  var object = new CardInfo({id: id, title: title, body: body, quality: quality, completed: null});
 
   cardPrepend(object);
   sendToLocalStorage(object);
@@ -61,7 +61,7 @@ function resetForm() {
 
 function cardPrepend(object) {
   $cardContainer.prepend(`
-    <article id=${object.id} class="card">
+    <article id=${object.id} class="card ${object.completed}">
       <h2 contenteditable="true" class="card-title">${object.title}</h2>
       <label for="checkbox">
       <input id="checkbox" type="checkbox" name="mark as complete box" class="mark-complete">complete
@@ -175,14 +175,15 @@ function trueOrFalse() {
 
 function markAsComplete() {
   var $toDo = $(this).closest('article');
+
   pullFromLocalStorage(this);
 
   $toDo.toggleClass('completed');
 
-  if (object.completed === false) {
-    object.completed = true;
+  if (object.completed === null) {
+    object.completed = 'completed';
   } else {
-    object.completed = false;
+    object.completed = null;
     };
 
   sendToLocalStorage(object);
@@ -204,27 +205,13 @@ function onPageLoad() {
   for (var i = 0; i < localStorage.length; i++) {
     var string = localStorage.getItem(localStorage.key(i));
     var object = JSON.parse(string);
+
     cardPrepend(object);
   };
 };
 
 onPageLoad();
 
-// function filterCards() {
-//   ideaList.innerHTML = '';
-//   var searchItems = searchInput.value;
-//   if (searchItems) {
-//     keyArray = JSON.parse(localStorage.getItem('keyArray'));
-//     keyArray.forEach(function(key){
-//       var rawIdea = localStorage.getItem(key);
-//       if (rawIdea.includes(searchItems)) {
-//         renderCard(JSON.parse(rawIdea))
-//       }
-//     });
-//   } else {
-//     getStorage();
-//   }
-// }
 
 function filterCards() {
   $cardContainer.html = '';
