@@ -40,6 +40,11 @@
     transition: 0.6s;
     outline: none;
 }
+
+.search-input {
+  margin-bottom: 0;
+}
+
 .save-button  {  
   margin: 2% auto 3% auto;
   background-color: #00A79D;
@@ -54,8 +59,16 @@
   color:#FFFFFF;
 }
 
+.show-completed-button {
+  width: 101px;
+  height: 25px;
+  border: none;
+  outline: none;
+  color: magenta;
+}
+
 .form-two {
-/*  width: 60%;*/
+  width: 60%;
   margin: auto;
 }
 

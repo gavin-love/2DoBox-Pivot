@@ -3,6 +3,9 @@ $ideaBody = $('.body-input');
 $ideaSave = $('.save-button');
 $ideaSearch = $('.search-input');
 $cardContainer = $('.card-container');
+$showCompletedBtn = $('.show-completed-button');
+
+var array = [];
 
 
 $ideaSave.on('click', validateInput);
@@ -15,6 +18,7 @@ $cardContainer.on('blur', 'article .card-title', editTitle);
 $cardContainer.on('blur', 'article .card-body', editBody);
 $cardContainer.on('click', 'article .mark-complete', markAsComplete);
 $ideaSearch.on('keyup', trueOrFalse);
+$showCompletedBtn.on('click', showCompleted);
 
 function CardInfo (object) {
   this.title = object.title;
@@ -189,6 +193,35 @@ function markAsComplete() {
   sendToLocalStorage(object);
 };
 
+function showCompleted(event) {
+  event.preventDefault();
+
+  for (var i = 0; i < localStorage.length; i++) {
+    var string = localStorage.getItem(localStorage.key(i));
+    var object = JSON.parse(string);
+
+    if (object.completed === 'completed') {
+        array.push(object);
+    };
+  };
+
+  sortObjectDecending(object);
+  arrayForLoop(array);
+  };
+
+function sortObjectDecending(object) {
+    array.sort(function(a,b) {
+   return a-b;
+   });
+};
+
+function arrayForLoop(array) {
+  for (var i = 0; i < array.length; i++) {
+    cardPrepend(array[i]);
+  };
+};
+
+
 function deleteCard(id) {
   $(this).closest('article').remove()
 
@@ -206,14 +239,16 @@ function onPageLoad() {
     var string = localStorage.getItem(localStorage.key(i));
     var object = JSON.parse(string);
 
+    if (object.completed === null) {
     cardPrepend(object);
+    };
   };
 };
 
 onPageLoad();
 
 
-function filterCards() {
-  $cardContainer.html = '';
-}
+// function filterCards() {
+//   $cardContainer.html = '';
+// }
 
