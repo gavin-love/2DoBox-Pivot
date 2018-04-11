@@ -23,7 +23,7 @@ $showCompletedBtn.on('click', showCompleted);
 function CardInfo (object) {
   this.title = object.title;
   this.body = object.body;
-  this.quality = object.quality || 'swill';
+  this.importance = object.importance || 'none';
   this.id = object.id
   this.completed = object.completed || null;
 };
@@ -40,10 +40,8 @@ function getUserInput() {
   var title = $ideaTitle.val();
   var body = $ideaBody.val();
   var id = Date.now();
-  var quality = 'swill';
-
-  var object = new CardInfo({id: id, title: title, body: body, quality: quality, completed: null});
-
+  var importance = 'none';
+  var object = new CardInfo({id: id, title: title, body: body, importance: importance, completed: null});
   cardPrepend(object);
   sendToLocalStorage(object);
   resetForm();
@@ -74,8 +72,8 @@ function cardPrepend(object) {
       <p contenteditable="true" class="card-body">${object.body}</p>
       <input type="button" class="upvote-button">
       <input type="button" class="downvote-button">
-      <h3 class="quality">quality:
-        <span class="quality-text">${object.quality}</span>
+      <h3 class="importance">importance:
+        <span class="importance-text">${object.importance}</span>
       </h3>
     </article>`);
 };
@@ -87,64 +85,71 @@ function sendToLocalStorage(object) {
 
 function pullFromLocalStorage(that) {
   var id = $(that).closest('article').attr('id');
- 
   string = localStorage.getItem(id);
   object = JSON.parse(string);
 };
 
 function upVote() {
   pullFromLocalStorage(this);
-
-  var quality = $(this).siblings($('h3')).children($('span'));
-  var text = quality.text();
-
-  qualityCheckUp(quality,text);
+  var importance = $(this).siblings($('h3')).children($('span'));
+  var text = importance.text();
+  qualityCheckUp(importance,text);
   sendToLocalStorage(object);
+};
+
+function qualityCheckUp(importance,text) {
+  if (text.includes('none')) {
+      importance.text('low');
+      importance = $(this).siblings($('h3')).children($('span')).text('low')
+      object.importance = 'low';
+  } else if (text.includes('low')) {
+      importance.text('normal');
+      importance = $(this).siblings($('h3')).children($('span')).text('normal')
+      object.importance = 'normal';
+  } else if (text.includes('normal')) {
+      importance.text('high');
+      importance = $(this).siblings($('h3')).children($('span')).text('high')
+      object.importance = 'high';
+  } else {
+      importance.text('critical');
+      importance = $(this).siblings($('h3')).children($('span')).text('critical')
+      object.importance = 'critical';
+  };
 };
 
 function downVote() {
   pullFromLocalStorage(this);
-
-  var quality = $(this).siblings($('h3')).children($('span'));
-  var text = quality.text();
-
-  qualityCheckDown(quality,text);
+  var importance = $(this).siblings($('h3')).children($('span'));
+  var text = importance.text();
+  qualityCheckDown(importance,text);
   sendToLocalStorage(object);
 };
 
-function qualityCheckUp(quality,text) {
-  if (text.includes('swill')) {
-      quality.text('plausible');
-      quality = $(this).siblings($('h3')).children($('span')).text('plausible')
-      object.quality = 'plausible';
-  } else if (text.includes('plausible')) {
-      quality.text('Genius');
-      object.quality = 'Genius';
-  };
-};
-
-function qualityCheckDown(quality,x) {
-  if (x.includes('Genius')) {
-      quality.text('plausible');
-      quality = $(this).siblings($('h3')).children($('span')).text('plausible')
-      object.quality = 'plausible';
-  } else if (x.includes('plausible')) {
-      quality.text('swill');
-      object.quality = 'swill';
+function qualityCheckDown(importance,text) {
+  if (text.includes('critical')) {
+      importance.text('high');
+      importance = $(this).siblings($('h3')).children($('span')).text('high')
+      object.importance = 'high';   
+  } else if (text.includes('high')) {
+      importance.text('normal');
+      importance = $(this).siblings($('h3')).children($('span')).text('normal')
+      object.importance = 'normal';
+  } else if (text.includes('normal')) {
+      importance.text('low');
+      importance = $(this).siblings($('h3')).children($('span')).text('low')
+      object.importance = 'low';
+  } else {
+      importance.text('none');
+      importance = $(this).siblings($('h3')).children($('span')).text('none')
+      object.importance = 'none';
   };
 };
 
 function  searchLocalStorage() {
-
-  
   for (var i = 0; i < localStorage.length; i++) {
     var result = localStorage.getItem(localStorage.key(i));
     var object = JSON.parse(result);
-
       if (object.title.includes($ideaSearch.val()) || object.body.includes($ideaSearch.val())) {
-        
-        console.log(object);
-        cardPrepend(object);
       };
   };    
 };
@@ -165,13 +170,10 @@ function editBody() {
 
 function trueOrFalse() {
   $cardContainer.html('');
-
   if ($ideaSearch.val()) {
-
     searchLocalStorage();
-
   } else if ($ideaSearch.val() === '') {
-        onPageLoad();
+    onPageLoad();
   } else {
     return;
   };
@@ -179,35 +181,28 @@ function trueOrFalse() {
 
 function markAsComplete() {
   var $toDo = $(this).closest('article');
-
   pullFromLocalStorage(this);
-
   $toDo.toggleClass('completed');
-
   if (object.completed === null) {
     object.completed = 'completed';
   } else {
     object.completed = null;
-    };
-
+  };
   sendToLocalStorage(object);
 };
 
 function showCompleted(event) {
   event.preventDefault();
-
   for (var i = 0; i < localStorage.length; i++) {
     var string = localStorage.getItem(localStorage.key(i));
     var object = JSON.parse(string);
-
     if (object.completed === 'completed') {
         array.push(object);
     };
   };
-
   sortObjectDecending(object);
   arrayForLoop(array);
-  };
+};
 
 function sortObjectDecending(object) {
     array.sort(function(a,b) {
@@ -224,13 +219,11 @@ function arrayForLoop(array) {
 
 function deleteCard(id) {
   $(this).closest('article').remove()
-
   deleteCardStorage(this);
-}
+};
 
 function deleteCardStorage(that) {
   var id = $(that).closest('article').attr('id');
- 
   localStorage.removeItem(id);   
 };
 
@@ -238,7 +231,6 @@ function onPageLoad() {
   for (var i = 0; i < localStorage.length; i++) {
     var string = localStorage.getItem(localStorage.key(i));
     var object = JSON.parse(string);
-
     if (object.completed === null) {
     cardPrepend(object);
     };
@@ -247,8 +239,4 @@ function onPageLoad() {
 
 onPageLoad();
 
-
-// function filterCards() {
-//   $cardContainer.html = '';
-// }
 
