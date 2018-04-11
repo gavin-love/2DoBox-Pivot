@@ -21,6 +21,12 @@
 .form-one {
   text-align: center;
 }
+
+p {
+  color: #003b45;
+
+}
+
 .input  {
   margin: 2% auto;  
   border: 2px solid #c6c6c6;
