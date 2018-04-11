@@ -5,6 +5,7 @@ $ideaSearch = $('.search-input');
 $cardContainer = $('.card-container');
 $showCompletedBtn = $('.show-completed-button');
 $importanceBtn = $('.toDo-buttons');
+$characterCount = $('.character-count');
 
 var array = [];
 
@@ -21,6 +22,7 @@ $cardContainer.on('click', 'article .mark-complete', markAsComplete);
 $ideaSearch.on('keyup', trueOrFalse);
 $showCompletedBtn.on('click', showCompleted);
 $importanceBtn.on('click', sortByImportance);
+$characterCount.on('keyup', limitCharacterCount);
 
 function CardInfo (object) {
   this.title = object.title;
@@ -261,16 +263,23 @@ function deleteCardStorage(that) {
 };
 
 function onPageLoad() {
+  var array = [];
   for (var i = 0; i < localStorage.length; i++) {
     var string = localStorage.getItem(localStorage.key(i));
     var object = JSON.parse(string);
-      // var xyz = Object.keys(object).slice(0, -1);
-      // console.log(xyz);
-    if (object.completed === null) {
-    cardPrepend(object);
+    array.push(object)
+
+    if (array.length < 11 && object.completed === null) {
+      cardPrepend(object);
     };
   };
+};
 
+function limitCharacterCount() {
+  var length = $(this).val().length;
+  var length = length++;
+  console.log(length);
+  $('#chars').text(length);
 };
 
 onPageLoad();
