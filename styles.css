@@ -86,6 +86,7 @@
 /*WATCH THIS AREA FOR REDUNDANCY
 */.toDo-buttons {
   background-color: #00A79D;
+  color: white;
   padding: 15px 15px;
   margin: 0 auto;
   flex-direction: column;
@@ -264,6 +265,7 @@ h2  {
   }
 
   .toDo-buttons {
+    color: white;
     margin: 3%;
     padding: 1vw 5vw;
     text-align: center; 
