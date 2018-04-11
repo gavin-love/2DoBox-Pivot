@@ -4,6 +4,7 @@ $ideaSave = $('.save-button');
 $ideaSearch = $('.search-input');
 $cardContainer = $('.card-container');
 $showCompletedBtn = $('.show-completed-button');
+$importanceBtn = $('.toDo-buttons');
 
 var array = [];
 
@@ -19,6 +20,7 @@ $cardContainer.on('blur', 'article .card-body', editBody);
 $cardContainer.on('click', 'article .mark-complete', markAsComplete);
 $ideaSearch.on('keyup', trueOrFalse);
 $showCompletedBtn.on('click', showCompleted);
+$importanceBtn.on('click', sortByImportance);
 
 function CardInfo (object) {
   this.title = object.title;
@@ -169,6 +171,22 @@ function trueOrFalse() {
   };
 };
 
+function sortByImportance() {
+
+
+  $('article').filter(function() {
+    return $('span .importance-text').text();
+  });
+};
+
+function sortByImportance() {
+  var value = $(this).text().toLowerCase();
+  
+  $('.card-container article').filter(function () {
+    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+  });
+};
+
 function editTitle() {
   var title = $(this).text();
   pullFromLocalStorage(this);
@@ -246,10 +264,13 @@ function onPageLoad() {
   for (var i = 0; i < localStorage.length; i++) {
     var string = localStorage.getItem(localStorage.key(i));
     var object = JSON.parse(string);
+      // var xyz = Object.keys(object).slice(0, -1);
+      // console.log(xyz);
     if (object.completed === null) {
     cardPrepend(object);
     };
   };
+
 };
 
 onPageLoad();
