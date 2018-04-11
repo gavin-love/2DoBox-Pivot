@@ -185,11 +185,33 @@ h2  {
   background-image: url(icons/downvote-hover.svg);
 }
 
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottom-buttons {
+  color: white;
+  margin: 3%;
+  background-color: #00A79D;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-self: center;
+  outline: none;
+  font-size: 0.7em;
+  padding: 1vw 5vw;
+
+}
+
+/*MEDIA QUERIES*/
+
 @media only screen and (min-width: 1025px) {
   .sort-buttons {
     width: 66%;
   }
 }
+
 /*tablet*/
 @media only screen and (max-width: 1024px) {
   .page-title  {
