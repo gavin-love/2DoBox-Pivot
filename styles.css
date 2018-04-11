@@ -293,6 +293,12 @@ h2  {
     justify-content: space-between;
   }
 
+  .upvote-button,
+  .downvote-button {
+    background-size: 20px;
+    margin: 5px 3%;
+  }
+
   .toDo-buttons {
     color: white;
     margin: 3%;
