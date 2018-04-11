@@ -55,7 +55,7 @@
 }
 
 .form-two {
-/*  width: 60%;*/
+  width: 60%;
   margin: auto;
 }
 
@@ -68,6 +68,24 @@
 
 .filter-button:hover {
   background-color: #045E55;
+}
+
+/*WATCH THIS AREA FOR REDUNDANCY
+*/.toDo-buttons {
+  background-color: #00A79D;
+  padding: 15px 15px;
+  margin: 0 auto;
+  flex-direction: column;
+  min-width: 68px;
+}
+
+.sort-buttons {
+  display: flex;
+  padding: 15px 15px;
+  margin: 0 auto;
+  flex-direction: row;
+  width: 88%;
+  justify-content: space-between
 }
 
 /*cards*/
@@ -153,6 +171,11 @@ h2  {
   background-image: url(icons/downvote-hover.svg);
 }
 
+@media only screen and (min-width: 1025px) {
+  .sort-buttons {
+    width: 66%;
+  }
+}
 /*tablet*/
 @media only screen and (max-width: 1024px) {
   .page-title  {
@@ -184,6 +207,11 @@ h2  {
   .search  {
     margin-top: 60vw;
   }
+
+  .search-input {
+    margin-left: -8vw;  
+  }
+
   .card  {
     margin-top: 10vw;
     width: 80vw;
@@ -208,14 +236,6 @@ h2  {
 }
 /*phone*/
 @media only screen and (max-width: 760px) and (min-width: 320px) {
-
-}
-
-@media only screen and (max-width: 1024px) {
-  
-}
-
-@media only screen and (max-width: 760px) {
   .form-container  {
     height: 89vw;
   }
@@ -224,74 +244,28 @@ h2  {
     height: 10vw;
     padding-top: 10vw;
   }
-  .input  {
-    font-size: 5vw;
-    margin: 5vw;
-    width: 85vw;
+  .sort-buttons {
+    flex-wrap: wrap;
+    width: 83%;
+    justify-content: space-between;
   }
+
+  .toDo-buttons {
+    margin: 3%;
+    padding: 1vw 5vw;
+    text-align: center; 
+    width: 22%;
+  }
+
   .input-body  {
     height: 4em;
   }
   .save-button  {
     font-size: 5vw;
-    width: 88vw;
+    width: 78vw;
     height: 10vw;
-    margin-right: 15px;
   }
   .search  {
     margin-top: 95vw;
-  }
-}
-
-@media only screen and (max-width: 320) {
-  .page-title  {
-    font-size: 10vw;
-    padding: 3vw;
-  }
-  .form-container  {
-    height: 57vw;
-    position: fixed;
-    top: 0px;
-    width: 100vw;
-    z-index: 1;
-  }
-  .input  {
-    width: 85vw;
-    height: 5vw;
-    padding: 1vw;
-    font-size: 3vw;
-  }
-  .input-body  {
-    height: 4em;
-  }
-  .save-button  {
-    height: 6vw;
-    width: 87vw;
-    outline: none;
-    font-size: 4vw;
-  }
-  .search  {
-    margin-top: 60vw;
-  }
-  .card  {
-    margin-top: 10vw;
-    width: 80vw;
-  }
-  h2  {
-    font-size: 6vw;
-  }
-  .card-body  {
-    font-size: 3vw;
-  }
-  .delete-button,
-  .arrow-button  {
-    background-color: white;
-    background-size: 20px;
-    height: 20px;
-    width: 20px;
-  }
-  .quality,
-  .quality-text  {
-    font-size: 2.5vw;
   }
 }
