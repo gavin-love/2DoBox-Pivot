@@ -96,9 +96,9 @@ function upVote() {
   pullFromLocalStorage(this);
 
   var quality = $(this).siblings($('h3')).children($('span'));
-  var x = quality.text();
+  var text = quality.text();
 
-  qualityCheckUp(quality,x);
+  qualityCheckUp(quality,text);
   sendToLocalStorage(object);
 };
 
@@ -106,18 +106,18 @@ function downVote() {
   pullFromLocalStorage(this);
 
   var quality = $(this).siblings($('h3')).children($('span'));
-  var x = quality.text();
+  var text = quality.text();
 
-  qualityCheckDown(quality,x);
+  qualityCheckDown(quality,text);
   sendToLocalStorage(object);
 };
 
-function qualityCheckUp(quality,x) {
-  if (x.includes('swill')) {
+function qualityCheckUp(quality,text) {
+  if (text.includes('swill')) {
       quality.text('plausible');
       quality = $(this).siblings($('h3')).children($('span')).text('plausible')
       object.quality = 'plausible';
-  } else if (x.includes('plausible')) {
+  } else if (text.includes('plausible')) {
       quality.text('Genius');
       object.quality = 'Genius';
   };
