@@ -3,15 +3,15 @@
 }
 /*page title*/
 .page-title  {
-  text-align: center;
-  padding: 3% 0 1% 0;
   font-family: 'Roboto Slab', serif;
-  font-weight: 700;
   font-size: 6vw;
+  font-weight: 700;
+  padding: 3% 0 1% 0;
+  text-align: center;
 }
 .title-todo  { 
-  display: inline;
   color: #00A79D;
+  display: inline;
 }
 .title-box  {
   color: #6D6E71;
@@ -29,11 +29,11 @@ p {
 }
 
 .input  {
-  margin: 2% auto;  
   border: 2px solid #c6c6c6;
   display: block;
   font-size: 2vw;
   height: 3vw;
+  margin: 2% auto;  
   text-indent: 1%;
   width: 60vw;
 }
@@ -44,8 +44,8 @@ p {
 .input[type=text]:focus {
     background-color: #c4f2ee;
     border: 2px solid #00A79D;
-    transition: 0.6s;
     outline: none;
+    transition: 0.6s;
 }
 
 .search-input {
@@ -53,13 +53,13 @@ p {
 }
 
 .save-button  {  
-  margin: 2% auto 3% auto;
   background-color: #00A79D;
   color: #FFFFFF;
   font-size: 2vw;
   height: 4vw;
-  width: 60vw;
+  margin: 2% auto 3% auto;
   padding: 0;
+  width: 60vw;
 }
 .save-button:hover  {
   background-color: #045E55;
@@ -67,31 +67,30 @@ p {
 }
 
 .show-completed-button {
-  width: 101px;
-  height: 25px;
   border: none;
-  outline: none;
   color: magenta;
+  height: 25px;
+  outline: none;
+  width: 101px;
 }
 
 .form-two {
-  width: 60%;
   margin: auto;
+  width: 60%;
 }
 
 .filter-button {
   background-color: #00A79D;
   border-radius: 0;
-  padding: 15px 15px;
   margin-left: 20%;
+  padding: 15px 15px;
 }
 
 .filter-button:hover {
   background-color: #045E55;
 }
 
-/*WATCH THIS AREA FOR REDUNDANCY
-*/.toDo-buttons {
+.toDo-buttons {
   background-color: #00A79D;
   color: white;
   padding: 15px 15px;
@@ -111,15 +110,21 @@ p {
 
 /*cards*/
 h2  {
-  font-size: 3vw;
   color: #6D6E71;
+  font-size: 3vw;
   font-weight: 700;
 }
 
+.importance {
+  color: #6D6E71;
+  margin-left: 6em;
+  margin-top: -1.5em; 
+}
+
 .card  {
+  border-bottom: 1px solid #D1D3D4;
   margin: 3% auto;
   padding-bottom: 2%;
-  border-bottom: 1px solid #D1D3D4;
   width: 60%;
 }
 
@@ -131,9 +136,9 @@ h2  {
   font-size: 2.3vw;
 }
 .card-body  {
-  margin: 3% 0;
   color: #939598;
   font-size: 1.5vw;
+  margin: 3% 0;
 }
 
 .quality {
@@ -144,19 +149,19 @@ h2  {
 }
 
 .completed {
-  opacity: .3;
   color: red;
+  opacity: .3;
 }
 
 .delete-button  {
-  position: absolute;
-  right: 20%;
   background-image: url(icons/delete.svg);
   background-size: 2.7vw;
   border: 0;
   height: 2.7vw;
-  width: 2.7vw;
   outline: none;
+  position: absolute;
+  right: 20%;
+  width: 2.7vw;
 }
 
 .downvote-button  {
@@ -164,10 +169,10 @@ h2  {
   background-size: 2.7vw;
   border: 0;
   height: 2.7vw;
-  width: 2.7vw;
   margin: 0 3%;
-  padding-bottom: 2%;
   outline: none;
+  padding-bottom: 2%;
+  width: 2.7vw;
 }
 
 .upvote-button  {
@@ -175,9 +180,9 @@ h2  {
   background-size: 2.7vw;
   border: 0;
   height: 2.7vw;
-  width: 2.7vw;
-  padding-bottom: 2%;
   outline: none;
+  padding-bottom: 2%;
+  width: 2.7vw;
 }
 
 .delete-button:hover  {
@@ -199,14 +204,14 @@ h2  {
 }
 
 .bottom-buttons {
-  color: white;
-  margin: 3%;
-  background-color: #00A79D;
-  flex-wrap: wrap;
-  flex-direction: column;
   align-self: center;
-  outline: none;
+  background-color: #00A79D;
+  color: white;
+  flex-direction: column;
+  flex-wrap: wrap;
   font-size: 0.7em;
+  margin: 3%;
+  outline: none;
   padding: 1vw 5vw;
 
 }
