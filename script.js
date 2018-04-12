@@ -79,14 +79,14 @@ function todoBox(){
       <article id=${object.id} class="card ${object.completed}">
         <h2 contenteditable="true" class="card-title">${object.title}</h2>
         <label for="checkbox">
-        <input id="checkbox" type="checkbox" role="checkbox" name="mark as complete box" class="mark-complete">complete
+        <input id="checkbox" type="checkbox" role="checkbox" name="mark as complete box" class="mark-complete">Complete
         </label>
         <input type="button" aria-label="delete" name="delete button" class="delete-button">
         <p contenteditable="true" class="card-body">${object.body}</p>
         <input type="button" aria-label="upvote" class="upvote-button">
         <input type="button" aria-label="downvote" class="downvote-button">
-        <h3 class="importance">importance:
-          <span class="importance-text">${object.importance}</span>
+        <h3 class="importance">Importance:
+         <span class="importance-text">${object.importance}</span>
         </h3>
       </article>`);
   };
