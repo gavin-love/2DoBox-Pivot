@@ -172,11 +172,8 @@ function todoBox(){
 
   function trueOrFalse() {
     $cardContainer.html('');
-
     if ($todoSearch.val()) {
-
       searchLocalStorage();
-
     } else if ($todoSearch.val() === '') {
           onPageLoad();
     } else {
@@ -204,17 +201,6 @@ function todoBox(){
     pullFromLocalStorage(this);
     object.body = body;
     sendToLocalStorage(object);
-  };
-
-  function trueOrFalse() {
-    $cardContainer.html('');
-    if ($todoSearch.val()) {
-      searchLocalStorage();
-    } else if ($todoSearch.val() === '') {
-      onPageLoad();
-    } else {
-      return;
-    };
   };
 
   function markAsComplete() {
@@ -281,6 +267,7 @@ function todoBox(){
 
   function showMore(event) {
     event.preventDefault();
+    $cardContainer.html('')
 
     for (var i = 0; i < localStorage.length; i++) {
       var string = localStorage.getItem(localStorage.key(i));
