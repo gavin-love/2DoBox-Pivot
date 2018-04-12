@@ -6,7 +6,7 @@ function todoBox(){
   $todoSave = $('.save-button');
   $todoSearch = $('.search-input');
   $cardContainer = $('.card-container');
-  $showCompletedBtn = $('.show-completed-button');
+  $showCompletedBtn = $('.show-completed');
   $importanceBtn = $('.toDo-buttons');
   $titleCharacterCount = $('.title-character-count');
   $bodyCharacterCount = $('.body-character-count');
@@ -183,14 +183,6 @@ function todoBox(){
   };
 
   function sortByImportance() {
-
-
-    $('article').filter(function() {
-      return $('span .importance-text').text();
-    });
-  };
-
-  function sortByImportance() {
     var value = $(this).text().toLowerCase();
     
     $('.card-container article').filter(function () {
@@ -237,6 +229,7 @@ function todoBox(){
 
   function showCompleted(event) {
     event.preventDefault();
+    array = [];
     for (var i = 0; i < localStorage.length; i++) {
       var string = localStorage.getItem(localStorage.key(i));
       var object = JSON.parse(string);
