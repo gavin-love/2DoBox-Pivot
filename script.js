@@ -10,6 +10,7 @@ function todoBox(){
   $importanceBtn = $('.toDo-buttons');
   $titleCharacterCount = $('.title-character-count');
   $bodyCharacterCount = $('.body-character-count');
+  $showMore = $('.show-more');
 
   var array = [];
   var titleLength = 0;
@@ -32,6 +33,7 @@ function todoBox(){
   $importanceBtn.on('click', sortByImportance);
   $titleCharacterCount.on('keyup', titleCharacterCount);
   $bodyCharacterCount.on('keyup', bodyCharacterCount);
+  $showMore.on('click', showMore);
 
   function CardInfo (object) {
     this.title = object.title;
@@ -275,6 +277,17 @@ function todoBox(){
         cardPrepend(object);
       };
     };
+  };
+
+  function showMore(event) {
+    event.preventDefault();
+
+    for (var i = 0; i < localStorage.length; i++) {
+      var string = localStorage.getItem(localStorage.key(i));
+      var object = JSON.parse(string); 
+
+      cardPrepend(object);
+    }
   };
 
   function titleCharacterCount() {
